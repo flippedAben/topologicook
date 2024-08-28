@@ -69,6 +69,14 @@ wheels = [
 ]
 
 [[package]]
+name = "dacite"
+version = "1.8.1"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/21/0f/cf0943f4f55f0fbc7c6bd60caf1343061dff818b02af5a0d444e473bb78d/dacite-1.8.1-py3-none-any.whl", hash = "sha256:cc31ad6fdea1f49962ea42db9421772afe01ac5442380d9a99fcf3d188c61afe", size = 14309 },
+]
+
+[[package]]
 name = "extruct"
 version = "0.17.0"
 source = { registry = "https://pypi.org/simple" }
@@ -329,20 +337,6 @@ wheels = [
 ]
 
 [[package]]
-name = "recipe-scrapers"
-version = "15.0.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "beautifulsoup4" },
-    { name = "extruct" },
-    { name = "isodate" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/8f/0b/4207f74d8c292a17f7d1dd43973b91e984af84aad477feb4d88d19ab2334/recipe_scrapers-15.0.0.tar.gz", hash = "sha256:d6fc8c5bacb67b571ac1cbaf4ab77e5f338112c107d40062e0a68403d16b8872", size = 106258 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/db/d8/74007927b7cc72e8d7a1bb47a08498e5546a4bd8cefe37f4a3266eac9cc3/recipe_scrapers-15.0.0-py3-none-any.whl", hash = "sha256:705d4e80bd0471f4fd73c584a551ca94f96521fdb1e766614aaebd32014d72c9", size = 209290 },
-]
-
-[[package]]
 name = "requests"
 version = "2.32.3"
 source = { registry = "https://pypi.org/simple" }
@@ -389,20 +383,22 @@ name = "topologicook"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "dacite" },
+    { name = "extruct" },
     { name = "httpx" },
     { name = "loguru" },
     { name = "orjson" },
     { name = "python-dotenv" },
-    { name = "recipe-scrapers" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "dacite", specifier = ">=1.8.1" },
+    { name = "extruct", specifier = ">=0.17.0" },
     { name = "httpx", specifier = ">=0.27.0" },
     { name = "loguru", specifier = ">=0.7.2" },
     { name = "orjson", specifier = ">=3.10.7" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "recipe-scrapers", specifier = ">=15.0.0" },
 ]
 
 [[package]]
