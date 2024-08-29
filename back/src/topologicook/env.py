@@ -4,7 +4,7 @@ from dataclasses import dataclass, fields
 from dotenv import load_dotenv
 
 
-@dataclass()
+@dataclass
 class Env:
     LOGURU_LEVEL: str
 
