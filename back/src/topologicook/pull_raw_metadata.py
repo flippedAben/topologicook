@@ -42,13 +42,13 @@ if os.path.exists(visited_log):
             if line:
                 visited_names.add(line)
 
-logger.info("Loaded visited.log")
+    logger.info("Loaded visited.log")
 
 
 # write to append only log
 with open(visited_log, "a") as log_f:
     with open(f"{html_path}/data.jsonl", "a") as f:
-        for url in recipe_urls[:100]:
+        for url in recipe_urls[:500]:
             _, name = os.path.split(url)
             if name in visited_names:
                 continue

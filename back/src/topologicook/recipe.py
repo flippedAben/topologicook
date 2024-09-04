@@ -43,6 +43,12 @@ class HowToStep:
 
 
 @dataclass
+class TimeRange:
+    minValue: str
+    maxValue: str
+
+
+@dataclass
 class Recipe:
     headline: str
     datePublished: str
@@ -56,7 +62,7 @@ class Recipe:
     recipeCuisine: list[str]
     recipeIngredient: list[str]
     recipeInstructions: list[HowToStep]
-    totalTime: str
+    totalTime: str | TimeRange
     cookTime: str | None = None
     prepTime: str | None = None
     nutrition: NutritionInformation | None = None
