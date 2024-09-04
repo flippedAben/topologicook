@@ -1,6 +1,7 @@
 import os
 
 import orjson
+from dacite.exceptions import MissingValueError
 from loguru import logger
 
 from topologicook.recipe import Recipe
@@ -49,11 +50,19 @@ with open(f"{dest_path}/data.jsonl", "a") as dest_f:
                             f"More than 1 JSON LD item in {data["source_url"]}"
                         )
 
-                    recipe = Recipe.from_json_ld(json_ld_recipes[0])
-                    dest_f.write(orjson.dumps(recipe).decode() + "\n")
+                    try:
+                        recipe = Recipe.from_json_ld(json_ld_recipes[0])
+                        dest_f.write(orjson.dumps(recipe).decode() + "\n")
+                    except MissingValueError as e:
+                        if e.field_path == "recipeInstructions.text":
+                            logger.info(
+                                f"Recipe instructions is not a list of HowToSteps: {name}"
+                            )
+                        else:
+                            raise e
 
                 dest_log_f.write(name + "\n")
                 visited_names.add(name)
-                logger.info(f"Wrote {name}")
+                logger.info(f"Visited {name}")
 
                 # TODO implement above for microdata
